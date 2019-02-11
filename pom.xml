@@ -9,7 +9,7 @@
     <relativePath />
   </parent>
   <groupId>org.jenkins-ci.plugins</groupId>
-  <artifactId>aqua-serverless-scanner</artifactId>
+  <artifactId>aqua-serverless</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>hpi</packaging>
 
@@ -29,7 +29,7 @@
 
   <name>Aqua Security Serverless Scanner</name>
   <description>Scans Serverless functions for vulnerabilities</description>
-  <url>https://wiki.jenkins-ci.org/display/JENKINS/Aqua+Security+Scanner+Plugin</url>
+  <url>https://wiki.jenkins-ci.org/display/JENKINS/Aqua+Security+Serverless+Plugin</url>
 
   <licenses>
     <license>
@@ -100,7 +100,7 @@
     <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
     <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
-    <tag>aqua-serverless-scanner-1.0.0</tag>
+    <tag>aqua-serverless-1.0.0</tag>
   </scm>
 
   <distributionManagement>
