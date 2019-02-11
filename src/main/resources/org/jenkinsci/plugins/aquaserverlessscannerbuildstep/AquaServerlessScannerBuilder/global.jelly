@@ -1,0 +1,33 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <!--
+    This Jelly script is used to produce the global configuration option.
+  -->
+  <f:section title="Aqua Serverless Security">
+    <f:block>
+     <b>Aqua Console Credentials</b>
+    </f:block>
+    <f:entry title="API URL" field="apiServerlessUrl">
+      <f:textbox />
+    </f:entry>
+    <f:entry title="API User" field="serverlessUser">
+      <f:textbox />
+    </f:entry>
+    <f:entry title="API Password" field="serverlessPassword">
+      <f:password />
+    </f:entry>
+
+  <f:block>
+    <b>Aqua Serverless Binary</b>
+  </f:block>
+  <f:entry title="Binary URL" field="serverlessBinaryUrl">
+    <f:textbox />
+  </f:entry>
+  <f:entry title="User" field="serverlessBinaryUser">
+    <f:textbox />
+  </f:entry>
+  <f:entry title="Password" field="serverlessBinaryPassword">
+    <f:password />
+  </f:entry>
+  </f:section>
+</j:jelly>

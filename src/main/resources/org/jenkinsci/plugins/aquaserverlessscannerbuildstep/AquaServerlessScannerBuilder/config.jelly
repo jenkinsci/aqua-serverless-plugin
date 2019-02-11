@@ -1,0 +1,29 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <!--
+    This jelly script is used for per-project configuration.
+
+    See global.jelly for a general discussion about jelly script.
+  -->
+  <f:block>
+    <b>Function to scan:</b>
+  </f:block>
+  <f:entry title="Code Scan Path" field="codeScanPath">
+    <f:textbox />
+  </f:entry>
+  <f:entry title="Custom flags" field="customFlags">
+    <f:textbox />
+  </f:entry>
+
+  <f:block>
+    <b>When code doesn’t comply with Aqua policy:</b>
+   </f:block>
+   <f:radioBlock checked="${instance.isOnDisallowed('ignore') or true}" name="onDisallowed" value="ignore" title="Never fail builds" inline="true" help="/plugin/aqua-security-scanner/help-logAndIgnore.html">
+    </f:radioBlock>
+   <f:radioBlock checked="${instance.isOnDisallowed('fail')}" name="onDisallowed" value="fail" title="Perform the action defined in Aqua’s policy" inline="true" help="/plugin/aqua-security-scanner/help-buildFails.html">
+    <f:entry title="Shell command to execute when no compliance" field="notCompliesCmd">
+	 <f:textbox />
+    </f:entry>
+   </f:radioBlock>
+
+</j:jelly>
