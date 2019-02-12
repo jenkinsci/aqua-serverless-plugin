@@ -8,22 +8,21 @@ import hudson.util.FormValidation;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.tasks.Builder;
-//import hudson.model.BuildListener;
 import hudson.tasks.ArtifactArchiver;
 import hudson.tasks.BuildStepDescriptor;
 import net.sf.json.JSONObject;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.QueryParameter;
-
 import javax.servlet.ServletException;
 import java.io.IOException;
-
 import hudson.FilePath;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import jenkins.tasks.SimpleBuildStep;
 import org.jenkinsci.Symbol;
+import hudson.util.Secret;
+
 
 /**
  * This is the builder class.
@@ -181,10 +180,10 @@ public class AquaServerlessScannerBuilder extends Builder implements SimpleBuild
 		 */
 		private String apiServerlessUrl;
 		private String serverlessUser;
-		private String serverlessPassword;
+		private Secret serverlessPassword;
 		private String serverlessBinaryUrl;
 		private String serverlessBinaryUser;
-		private String serverlessBinaryPassword;
+		private Secret serverlessBinaryPassword;
 
 		/**
 		 * In order to load the persisted global configuration, you have to call load()
@@ -228,11 +227,11 @@ public class AquaServerlessScannerBuilder extends Builder implements SimpleBuild
 			// set that to properties and call save().
 			apiServerlessUrl = formData.getString("apiServerlessUrl");
 			serverlessUser = formData.getString("serverlessUser");
-			serverlessPassword = formData.getString("serverlessPassword");
+			serverlessPassword = Secret.fromString(formData.getString("serverlessPassword"));
 
 			serverlessBinaryUrl = formData.getString("serverlessBinaryUrl");
 			serverlessBinaryUser = formData.getString("serverlessBinaryUser");
-			serverlessBinaryPassword = formData.getString("serverlessBinaryPassword");
+			serverlessBinaryPassword = Secret.fromString(formData.getString("serverlessBinaryPassword"));
 			save();
 			return super.configure(req, formData);
 		}
@@ -244,7 +243,7 @@ public class AquaServerlessScannerBuilder extends Builder implements SimpleBuild
 			return serverlessUser;
 		}
 		public String getServerlessPassword() {
-			return serverlessPassword;
+			return Secret.toString(serverlessPassword);
 		}
 		public String getServerlessBinaryUrl() {
 			return serverlessBinaryUrl;
@@ -253,7 +252,7 @@ public class AquaServerlessScannerBuilder extends Builder implements SimpleBuild
 			return serverlessBinaryUser;
 		}
 		public String getServerlessBinaryPassword() {
-			return serverlessBinaryPassword;
+			return Secret.toString(serverlessBinaryPassword);
 		}
 	}
 }

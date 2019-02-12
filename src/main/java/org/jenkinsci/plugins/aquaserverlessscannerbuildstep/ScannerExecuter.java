@@ -35,13 +35,25 @@ public class ScannerExecuter {
 
 		PrintStream print_stream = null;
 		try {
-			// Form input might be in $VARIABLE or ${VARIABLE} form, expand.
-			// expand() is a noop for strings not in the above form.
 			final EnvVars env = build.getEnvironment(listener);
 			if (downloadServerlessBinary(serverlessBinaryUrl, serverlessBinaryUser, serverlessBinaryPassword, listener, workspace) != true) {
 				listener.getLogger().println("Error download scanner");
 			}
+
 			ArgumentListBuilder args = new ArgumentListBuilder();
+
+			//Print scanner version
+			Launcher.ProcStarter ps = launcher.launch();
+			ps = launcher.launch();
+			args.add(workspace+"/scannercli", "version");
+			ps.cmds(args);
+			ps.stdin(null);
+			ps.stderr(listener.getLogger());
+			ps.stdout(listener.getLogger());
+			ps.join(); // RUN !
+			//
+			
+			args = new ArgumentListBuilder();
 
 			args.add(workspace+"/scannercli", "scan", "--html", "--code-scan");
 			if (!codeScanPath.trim().isEmpty()) {
@@ -58,7 +70,7 @@ public class ScannerExecuter {
 			args.addMasked(serverlessPassword);
 			
 			File outFile = new File(build.getRootDir(), "out");
-			Launcher.ProcStarter ps = launcher.launch();
+			ps = launcher.launch();
 			ps.cmds(args);
 			ps.stdin(null);
 			print_stream = new PrintStream(outFile, "UTF-8");
