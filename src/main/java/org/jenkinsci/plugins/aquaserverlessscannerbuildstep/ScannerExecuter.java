@@ -107,7 +107,7 @@ public class ScannerExecuter {
 				ps.join(); // RUN !
 
 			}
-			if (onDisallowed == "ignore") {
+			if (onDisallowed.equals("ignore")) {
 				return 0;
 			}
 			return exitCode;
@@ -170,7 +170,7 @@ public class ScannerExecuter {
 
 				// Read response from web server
 				httpResponseReader =
-								new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+								new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
 				// Save scannercli binary
 				InputStream scannerCliBinary = null;
 				OutputStream os = null;
