@@ -29,7 +29,7 @@
 
   <name>Aqua Security Serverless Scanner</name>
   <description>Scans Serverless functions for vulnerabilities</description>
-  <url>https://wiki.jenkins-ci.org/display/JENKINS/Aqua+Security+Serverless+Plugin</url>
+  <url>https://wiki.jenkins-ci.org/display/JENKINS/Aqua+Serverless+Plugin</url>
 
   <licenses>
     <license>
@@ -88,7 +88,6 @@
         <scope>test</scope>
     </dependency>
 </dependencies>
-
   <developers>
     <developer>
       <id>oranmoshai</id>
@@ -126,5 +125,4 @@
       <url>http://repo.jenkins-ci.org/public/</url>
     </pluginRepository>
   </pluginRepositories>
-
 </project>
