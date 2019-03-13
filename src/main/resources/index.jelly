@@ -3,5 +3,5 @@
   This view is used to render the installed plugins page.
 -->
 <div>
-  This plugin enables scanning of Docker images using the Aqua API.
+  This plugin enables scanning of serverless functions using the Aqua API.
 </div>
