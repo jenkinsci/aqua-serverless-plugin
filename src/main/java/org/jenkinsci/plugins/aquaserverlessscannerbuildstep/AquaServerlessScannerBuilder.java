@@ -178,11 +178,11 @@ public class AquaServerlessScannerBuilder extends Builder implements SimpleBuild
 		 * To persist global configuration information, simply store it in a field and
 		 * call save().
 		 */
-		private String apiServerlessUrl;
-		private String serverlessUser;
+		private Secret apiServerlessUrl;
+		private Secret serverlessUser;
 		private Secret serverlessPassword;
-		private String serverlessBinaryUrl;
-		private String serverlessBinaryUser;
+		private Secret serverlessBinaryUrl;
+		private Secret serverlessBinaryUser;
 		private Secret serverlessBinaryPassword;
 
 		/**
@@ -225,31 +225,31 @@ public class AquaServerlessScannerBuilder extends Builder implements SimpleBuild
 		public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
 			// To persist global configuration information,
 			// set that to properties and call save().
-			apiServerlessUrl = formData.getString("apiServerlessUrl");
-			serverlessUser = formData.getString("serverlessUser");
+			apiServerlessUrl = Secret.fromString(formData.getString("apiServerlessUrl"));
+			serverlessUser = Secret.fromString(formData.getString("serverlessUser"));
 			serverlessPassword = Secret.fromString(formData.getString("serverlessPassword"));
 
-			serverlessBinaryUrl = formData.getString("serverlessBinaryUrl");
-			serverlessBinaryUser = formData.getString("serverlessBinaryUser");
+			serverlessBinaryUrl = Secret.fromString(formData.getString("serverlessBinaryUrl"));
+			serverlessBinaryUser = Secret.fromString(formData.getString("serverlessBinaryUser"));
 			serverlessBinaryPassword = Secret.fromString(formData.getString("serverlessBinaryPassword"));
 			save();
 			return super.configure(req, formData);
 		}
 
 		public String getApiServerlessUrl() {
-			return apiServerlessUrl;
+			return Secret.toString(apiServerlessUrl);
 		}
 		public String getServerlessUser() {
-			return serverlessUser;
+			return Secret.toString(serverlessUser);
 		}
 		public String getServerlessPassword() {
 			return Secret.toString(serverlessPassword);
 		}
 		public String getServerlessBinaryUrl() {
-			return serverlessBinaryUrl;
+			return Secret.toString(serverlessBinaryUrl);
 		}
 		public String getServerlessBinaryUser() {
-			return serverlessBinaryUser;
+			return Secret.toString(serverlessBinaryUser);
 		}
 		public String getServerlessBinaryPassword() {
 			return Secret.toString(serverlessBinaryPassword);
