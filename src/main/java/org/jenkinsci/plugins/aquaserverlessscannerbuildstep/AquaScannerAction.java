@@ -18,7 +18,7 @@ public class AquaScannerAction implements Action {
     @Override
     public String getIconFileName() {
         // return the path to the icon file
-        return "/plugin/aqua-serverless-scanner/images/aqua.png";
+        return "/plugin/aqua-serverless/images/aqua.png";
     }
 
     @Override
