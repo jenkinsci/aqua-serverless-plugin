@@ -89,7 +89,7 @@ public class ScannerExecuter {
 
 			//css
 			FilePath targetCss = new FilePath(workspace, "styles.css");
-			File cssFile = new File(env.get("JENKINS_HOME") + "/plugins/aqua-security-scanner/css/", "styles.css");
+			File cssFile = new File(env.get("JENKINS_HOME") + "/plugins/aqua-serverless/css/", "styles.css");
 			FilePath cssFilePath = new FilePath(cssFile);
 			cssFilePath.copyTo(targetCss);
 
