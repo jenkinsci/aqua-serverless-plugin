@@ -63,7 +63,7 @@ public class ScannerExecuter {
 				args.add(workspace);
 			}
 			if (!customFlags.trim().isEmpty()) {
-				args.add(customFlags);
+				args.addTokenized(customFlags);
 			}
 
 			args.add("--host", apiServerlessUrl, "--user", serverlessUser, "--password");
