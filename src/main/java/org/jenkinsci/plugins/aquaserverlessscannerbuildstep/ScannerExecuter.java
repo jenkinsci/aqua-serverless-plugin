@@ -20,6 +20,7 @@ import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import hudson.util.Secret;
 
 /**
  * This class does the actual execution..
@@ -29,9 +30,9 @@ import java.io.OutputStream;
 public class ScannerExecuter {
 
 	public static int execute(Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener, String artifactName,
-		  String apiServerlessUrl, String serverlessUser, String serverlessPassword,
+		  String apiServerlessUrl, String serverlessUser, Secret serverlessPassword,
 			String notCompliesCmd, String codeScanPath, String customFlags, String serverlessBinaryUrl, 
-			String serverlessBinaryUser, String serverlessBinaryPassword, String onDisallowed) {
+			String serverlessBinaryUser, Secret serverlessBinaryPassword, String onDisallowed) {
 
 		PrintStream print_stream = null;
 		try {
@@ -149,7 +150,7 @@ public class ScannerExecuter {
 	}
 
 	private static boolean downloadServerlessBinary(String serverlessBinaryUrl, String serverlessBinaryUser, 
-	String serverlessBinaryPassword, TaskListener listener, FilePath workspace) {
+	Secret serverlessBinaryPassword, TaskListener listener, FilePath workspace) {
 
 		BufferedReader httpResponseReader = null;
 		try {
@@ -159,8 +160,8 @@ public class ScannerExecuter {
 
 				// Set HTTP method as GET
 				urlConnection.setRequestMethod("GET");
-
-				if (!serverlessBinaryUser.trim().isEmpty() && !serverlessBinaryPassword.trim().isEmpty()) {
+				
+				if (!serverlessBinaryUser.trim().isEmpty() && serverlessBinaryPassword != null) {
 					String usernameColonPassword = serverlessBinaryUser + ":" + serverlessBinaryPassword;
 					byte[] usernameColonPasswordToByte = usernameColonPassword.getBytes("UTF-8");
 					String basicAuthPayload = DatatypeConverter.printBase64Binary(usernameColonPasswordToByte);
