@@ -97,13 +97,13 @@ public class AquaServerlessScannerBuilder extends Builder implements SimpleBuild
 		// This is where you 'build' the project.
 		String apiServerlessUrl = getDescriptor().getApiServerlessUrl();
 		String serverlessUser = getDescriptor().getServerlessUser();
-		String serverlessPassword = getDescriptor().getServerlessPassword();
+		Secret serverlessPassword = getDescriptor().getServerlessPassword();
 
 		String serverlessBinaryUrl = getDescriptor().getServerlessBinaryUrl();
 		String serverlessBinaryUser = getDescriptor().getServerlessBinaryUser();
-		String serverlessBinaryPassword = getDescriptor().getServerlessBinaryPassword();
+		Secret serverlessBinaryPassword = getDescriptor().getServerlessBinaryPassword();
 		if (apiServerlessUrl == null || apiServerlessUrl.trim().equals("") || serverlessUser == null || serverlessUser.trim().equals("") || serverlessPassword == null
-				|| serverlessPassword.trim().equals("")) {
+				||  Secret.toString(serverlessPassword).trim().equals("")) {
 				throw new AbortException("Missing configuration. Please set the global configuration parameters in The \"Aqua Security\" section under  \"Manage Jenkins/Configure System\", before continuing.\n");
 		}
 
@@ -242,8 +242,8 @@ public class AquaServerlessScannerBuilder extends Builder implements SimpleBuild
 		public String getServerlessUser() {
 			return Secret.toString(serverlessUser);
 		}
-		public String getServerlessPassword() {
-			return Secret.toString(serverlessPassword);
+		public Secret getServerlessPassword() {
+			return serverlessPassword;
 		}
 		public String getServerlessBinaryUrl() {
 			return Secret.toString(serverlessBinaryUrl);
@@ -251,8 +251,8 @@ public class AquaServerlessScannerBuilder extends Builder implements SimpleBuild
 		public String getServerlessBinaryUser() {
 			return Secret.toString(serverlessBinaryUser);
 		}
-		public String getServerlessBinaryPassword() {
-			return Secret.toString(serverlessBinaryPassword);
+		public Secret getServerlessBinaryPassword() {
+			return serverlessBinaryPassword;
 		}
 	}
 }
