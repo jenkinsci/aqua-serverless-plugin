@@ -20,7 +20,7 @@
   <f:block>
     <b>Aqua Serverless Binary</b>
   </f:block>
-  <f:entry title="Binary URL" field="serverlessBinaryUrl" default="https://download.aquasec.com/serverless/4.0/scannercli">
+  <f:entry title="Binary URL" field="serverlessBinaryUrl" help="/plugin/aqua-serverless/help-scanner-version.html">
     <f:textbox />
   </f:entry>
   <f:entry title="User" field="serverlessBinaryUser">
