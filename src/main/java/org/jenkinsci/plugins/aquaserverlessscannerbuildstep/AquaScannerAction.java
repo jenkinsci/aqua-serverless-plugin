@@ -24,21 +24,21 @@ public class AquaScannerAction implements Action {
     @Override
     public String getDisplayName() {
         // return the label for your link
-	if (artifactSuffix == null) {
-	    return "Aqua Security Scanner";
-	} else {
-	    return "Aqua Security Scanner " + artifactSuffix;
-	}
+        if (artifactSuffix == null) {
+            return "Aqua Security Serverless Scanner";
+        } else {
+            return "Aqua Security Serverless Scanner " + artifactSuffix;
+        }
     }
 
     @Override
     public String getUrlName() {
         // defines the suburl, which is appended to ...jenkins/job/jobname
-	if (artifactSuffix == null) {
-	    return "aqua-results";
-	} else {
-	    return "aqua-results-" + artifactSuffix;
-	}
+        if (artifactSuffix == null) {
+            return "aqua-serverless-results";
+        } else {
+            return "aqua-serverless-results-" + artifactSuffix;
+        }
     }
 
     public Run<?, ?> getBuild() {
